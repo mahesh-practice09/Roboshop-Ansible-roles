@@ -1,3 +1,0 @@
-- name: This is for {{ component }} component
-  ansible.builtin.debug:
-    msg: "This is to configure {{ component }}"
