@@ -1,6 +1,6 @@
 ---
 - name: demo
-  hosts: local
+  hosts: localhost
   connection: local
   roles:
   - demo
