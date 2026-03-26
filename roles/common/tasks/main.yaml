@@ -1,3 +1,3 @@
-- name: This is test call
+- name: This is for {{ component }} component
   ansible.builtin.debug:
-    msg: This is test for "{{ component }}"
+    msg: "This is to configure {{ component }}"
