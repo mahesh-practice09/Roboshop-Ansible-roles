@@ -1,0 +1,49 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: systemd setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup.yaml
+
+- name: Install maven
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - maven
+  - mysql
+- name: PiP install PyMySQL
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    executable: pip3.9
+  loop:
+  - PyMySQL
+  - cryptography
+
+- name: Install mvn dependencies
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+- name: rename shipping-1.0.jar to shipping.jar
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: /app
+- name: Reload systemd daemon
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Authenticatio and Import required databases
+  community.mysql.mysql_db:
+    login_user: root
+    login_host: "{{ MYSQL_HOST }}"
+    login_password: "{{ MYSQL_ROOT_PASSWORD }}"
+    state: import
+    name: all
+    target: "{{ item }}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql
+  - /app/db/master-data.sql
