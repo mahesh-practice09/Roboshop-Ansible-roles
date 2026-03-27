@@ -2,10 +2,6 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup.yaml
-- name: systemd setup
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: systemd-setup.yaml
 
 - name: Install Python gcc python3-devel
   ansible.builtin.package:
@@ -20,3 +16,8 @@
     requirements: requirements.txt
     executable: pip3.9
     chdir: /app
+
+- name: systemd setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup.yaml
