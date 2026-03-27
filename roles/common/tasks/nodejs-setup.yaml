@@ -4,3 +4,7 @@
   ansible.builtin.dnf:
     name: nodejs
     state: present
+- name: npm download dependencies
+  community.general.npm:
+    path: /app
+    state: present

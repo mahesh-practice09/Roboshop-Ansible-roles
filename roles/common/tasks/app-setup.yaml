@@ -26,7 +26,3 @@
     src: /tmp/{{ component }}.zip
     dest: /app
     remote_src: yes
-- name: npm download dependencies
-  community.general.npm:
-    path: /app
-    state: present
