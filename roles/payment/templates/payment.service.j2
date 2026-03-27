@@ -13,12 +13,9 @@ Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
-
-# Graceful shutdown instead of kill -9
+# Remove ExecStop completely
 KillSignal=SIGTERM
 TimeoutStopSec=30
-
-SyslogIdentifier=payment
 Restart=always
 RestartSec=5
 
