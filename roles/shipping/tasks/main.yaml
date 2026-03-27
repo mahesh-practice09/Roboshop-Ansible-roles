@@ -3,11 +3,6 @@
     name: common
     tasks_from: app-setup.yaml
 
-- name: systemd setup
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: systemd-setup.yaml
-
 - name: Install maven
   ansible.builtin.package:
     name: "{{ item }}"
@@ -47,3 +42,8 @@
   - /app/db/schema.sql
   - /app/db/app-user.sql
   - /app/db/master-data.sql
+
+- name: systemd setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup.yaml
