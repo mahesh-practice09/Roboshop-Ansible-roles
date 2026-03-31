@@ -7,7 +7,7 @@ hostnames:
 filters:
   instance-state-name: running
   tag:Name:
-  - 'frontend-dev'
+  - frontend-dev
 keyed-groups:
 - key: "'frontend' if tags.Name == 'frontend-dev'"
   prefix: ''
