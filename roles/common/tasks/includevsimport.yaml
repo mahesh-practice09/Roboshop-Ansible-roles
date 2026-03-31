@@ -4,8 +4,8 @@
 
 - name: message-2
   ansible.builtin.debug:
-    msh: "Hi from MSG-2"
+    msg: "Hi from MSG-2"
 
 - name: message-3
   ansible.builtin.debug:
-    msh: "Hi from MSG-3"
+    msg: "Hi from MSG-3"
