@@ -3,11 +3,12 @@ plugin: amazon.aws.aws_ec2
 regions:
 - us-east-1
 hostnames:
-- ip-address
+- private-ip-address
 filters:
   instance-state-name: running
   tag:Name:
   - 'frontend-dev'
 keyed-groups:
-- key: Tags.Name
-  separater: ' '
+- key: "'frontend' if tags.Name == 'frontend-dev'"
+  prefix: ''
+  separator: ''
