@@ -8,3 +8,6 @@ filters:
   instance-state-name: running
   tag:Name:
   - 'frontend-dev'
+keyed-groups:
+- key: Tags.Name
+  separater: ' '
