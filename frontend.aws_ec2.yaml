@@ -5,5 +5,6 @@ regions:
 hostnames:
 - ip-address
 filters:
+  instance-state-name: running
   tag:Name:
   - 'frontend-dev'
